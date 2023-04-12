@@ -1,0 +1,36 @@
+* {
+  font-family: Inter, sans-serif;
+  margin: 0;
+}
+
+body {
+  background: #30333D;
+}
+
+.header {
+  background: #232A34;
+}
+
+.header--title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 7.5vh;
+}
+
+.header--title>span {
+  font-weight: 900;
+  margin: 0 .1em 0 .1em;
+}
+
+.header--francophone {
+  color: #4584FF;
+}
+
+.header--flag {
+  color: white;
+}
+
+.header--guesser {
+  color: #FF5C5C
+}
