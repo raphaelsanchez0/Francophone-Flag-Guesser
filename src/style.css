@@ -5,10 +5,16 @@
 
 body {
   background: #30333D;
+  display: grid;
+  
+    height: 100vh;
+  
 }
 
-.header {
+
+.header { 
   background: #232A34;
+  margin: 0;
 }
 
 .header--title {
@@ -33,4 +39,18 @@ body {
 
 .header--guesser {
   color: #FF5C5C
+}
+
+.guesser{
+  background-color: #212329;
+  width: 50%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+.guesser--image{
+  height: 50vh;
 }
