@@ -58,4 +58,7 @@ body {
 .guesser--image {
   width: auto;
   height: auto;
+  max-width: 100%;
+  display: block;
+
 }
