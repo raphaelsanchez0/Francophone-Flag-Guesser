@@ -30,9 +30,9 @@ export default function Guesser() {
 
     }
 
-    const flagButtons = createFlagOptions(flag, 4).map(flagNum=>{
+    const flagButtons = createFlagOptions(flag, 4).map(button=>{
         return(
-            <button className='flag'> {francophoneCountries[flagNum].country} </button>
+            <button className='guesser--button'> {francophoneCountries[button].country} </button>
         )
     })
 
@@ -43,7 +43,7 @@ export default function Guesser() {
         <div className="guesser">
             <img src={`https://flagcdn.com/${countries[flag].id}.svg`} className="guesser--image" />
             <div className='guesser--buttons'>
-                <button className='testBtn' onClick={changeFlag}>Change</button>
+                {/* <button className='testBtn' onClick={changeFlag}>Change</button> */}
                 {flagButtons}
 
             </div>
