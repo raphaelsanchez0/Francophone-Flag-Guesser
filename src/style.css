@@ -91,4 +91,9 @@ body {
 
 .answer{
   color: white;
+  text-align: center;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  flex-grow: 1;
 }
