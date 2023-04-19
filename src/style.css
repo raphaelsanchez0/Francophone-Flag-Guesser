@@ -88,3 +88,7 @@ body {
 .guesser--button:hover {
   background-color: #3b3d42;
 }
+
+.answer{
+  color: white;
+}

@@ -1,13 +1,17 @@
-import countries from '../assets/francophoneCountries.js'
+import countries from '../assets/francophoneFlags.js'
 import { useState } from 'react';
-import francophoneCountries from '../assets/francophoneCountries.js';
+import francophoneCountries from '../assets/francophoneFlags.js';
+import Answer from './Answer.jsx';
 
 export default function Guesser() {
-    const [flag, setFlag] = useState(getRandomCountryCode())
+    const [shownFlag, setShownFlag] = useState(getRandomFlagCode())
 
-    const [currentlyGuessing, setCurrentlyGuessing] = useState(true)
+    const [guessingStatus, setGuessingStatus] = useState({
+        status:"guessing",
+        wrongAnswer:""
+    })
 
-    function getRandomCountryCode() {
+    function getRandomFlagCode() {
         return getRandomNumber(countries.length)
     }
 
@@ -16,14 +20,14 @@ export default function Guesser() {
     }
 
     function changeFlag() {
-        setFlag(getRandomCountryCode())
+        setShownFlag(getRandomFlagCode())
     }
 
     function createFlagOptions(trueFlagCode, numberOfOptions) {
         const flagOptions = new Set()
         flagOptions.add(trueFlagCode)
         while (flagOptions.size < numberOfOptions) {
-            flagOptions.add(getRandomCountryCode())
+            flagOptions.add(getRandomFlagCode())
         }
 
         const shuffledflagOptions = shuffleArray(Array.from(flagOptions))
@@ -39,14 +43,32 @@ export default function Guesser() {
         return array;
     }
 
-    function handleAnswer(countryCode) {
+    function createAnswer(){
 
-        console.log(countryCode === countries[flag].id)
+    }
+
+    function handleAnswer(selectedFlagCode) {
+
+        
+
+        if (selectedFlagCode === countries[shownFlag].id) {
+            setGuessingStatus(prevStatus => ({
+                ...prevStatus,
+                status: 'correctAnswer'
+            }))
+        } else {
+            const wrongFlag = countries.find(country => country.id ===selectedFlagCode)
+            setGuessingStatus(prevStatus => ({
+                ...prevStatus,
+                status: 'wrongAnswer',
+                wrongAnswer: `${wrongFlag.country}`
+            }))
+        }
 
 
     }
 
-    const flagButtons = createFlagOptions(flag, 4).map(button => {
+    const flagButtons = createFlagOptions(shownFlag, 4).map(button => {
         const countryObject = francophoneCountries[button]
         return (
             <button className='guesser--button' onClick={() => handleAnswer(francophoneCountries[button].id)}> {countryObject.country} </button>
@@ -58,8 +80,15 @@ export default function Guesser() {
 
     return (
         <div className="guesser">
-            <img src={`https://flagcdn.com/${countries[flag].id}.svg`} className="guesser--image" />
-            {currentlyGuessing && <div className='guesser--buttons'>{flagButtons}</div>}
+            <img src={`https://flagcdn.com/${countries[shownFlag].id}.svg`} className="guesser--image" />
+            {guessingStatus.status==="guessing" && 
+            <div className='guesser--buttons'>{flagButtons}</div>}
+            {guessingStatus.status ==="correctAnswer" && 
+            <Answer answer={true} correctAnswer={countries[shownFlag].country}/>}
+            {guessingStatus.status ==="wrongAnswer" && 
+            <Answer answer={false} correctAnswer={countries[shownFlag].country}
+            wrongAnswer={guessingStatus.wrongAnswer}
+            />}
 
         </div>
     )
