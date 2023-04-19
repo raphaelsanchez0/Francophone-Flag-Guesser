@@ -63,25 +63,28 @@ body {
 
 }
 
-.guesser--buttons{
+.guesser--buttons {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   height: auto;
   width: auto;
   flex-grow: 1;
-  gap:20px;
+  gap: 20px;
   align-self: stretch;
   margin: 20px;
 }
 
-.guesser--button{
+.guesser--button {
   border: none;
   text-decoration: none;
   background-color: #30333D;
-  color:white;
+  color: white;
   font-weight: bolder;
   text-align: center;
-  
+
 }
 
+.guesser--button:hover {
+  background-color: #3b3d42;
+}
