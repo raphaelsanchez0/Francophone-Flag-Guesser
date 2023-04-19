@@ -4,14 +4,15 @@ import francophoneCountries from '../assets/francophoneFlags.js';
 import Answer from './Answer.jsx';
 
 export default function Guesser() {
-    const [shownFlag, setShownFlag] = useState(getRandomFlagCode())
+    const [shownFlagIndex, setShownFlagIndex] = useState(getRandomFlagIndex()) 
+    //index is refering to the index of the flag in the francophoneFlags.js
 
     const [guessingStatus, setGuessingStatus] = useState({
         status:"guessing",
         wrongAnswer:""
     })
 
-    function getRandomFlagCode() {
+    function getRandomFlagIndex() {
         return getRandomNumber(countries.length)
     }
 
@@ -20,19 +21,19 @@ export default function Guesser() {
     }
 
     function changeFlag() {
-        setShownFlag(getRandomFlagCode())
+        setShownFlagIndex(getRandomFlagIndex())
     }
 
     function createFlagOptions(trueFlagCode, numberOfOptions) {
         const flagOptions = new Set()
         flagOptions.add(trueFlagCode)
         while (flagOptions.size < numberOfOptions) {
-            flagOptions.add(getRandomFlagCode())
+            flagOptions.add(getRandomFlagIndex())
         }
 
-        const shuffledflagOptions = shuffleArray(Array.from(flagOptions))
+        const shuffledFlagOptions = shuffleArray(Array.from(flagOptions))
 
-        return shuffledflagOptions;
+        return shuffledFlagOptions;
     }
 
     function shuffleArray(array) {
@@ -47,17 +48,14 @@ export default function Guesser() {
 
     }
 
-    function handleAnswer(selectedFlagCode) {
-
-        
-
-        if (selectedFlagCode === countries[shownFlag].id) {
+    function handleAnswer(selectedFlagIndex) {
+        if (selectedFlagIndex === countries[shownFlagIndex].id) {
             setGuessingStatus(prevStatus => ({
                 ...prevStatus,
                 status: 'correctAnswer'
             }))
         } else {
-            const wrongFlag = countries.find(country => country.id ===selectedFlagCode)
+            const wrongFlag = countries.find(country => country.id ===selectedFlagIndex)
             setGuessingStatus(prevStatus => ({
                 ...prevStatus,
                 status: 'wrongAnswer',
@@ -68,25 +66,22 @@ export default function Guesser() {
 
     }
 
-    const flagButtons = createFlagOptions(shownFlag, 4).map(button => {
+    const flagButtons = createFlagOptions(shownFlagIndex, 4).map(button => {
         const countryObject = francophoneCountries[button]
         return (
             <button className='guesser--button' onClick={() => handleAnswer(francophoneCountries[button].id)}> {countryObject.country} </button>
         )
     })
 
-
-
-
     return (
         <div className="guesser">
-            <img src={`https://flagcdn.com/${countries[shownFlag].id}.svg`} className="guesser--image" />
+            <img src={`https://flagcdn.com/${countries[shownFlagIndex].id}.svg`} className="guesser--image" />
             {guessingStatus.status==="guessing" && 
             <div className='guesser--buttons'>{flagButtons}</div>}
             {guessingStatus.status ==="correctAnswer" && 
-            <Answer answer={true} correctAnswer={countries[shownFlag].country}/>}
+            <Answer answer={true} correctAnswer={countries[shownFlagIndex].country}/>}
             {guessingStatus.status ==="wrongAnswer" && 
-            <Answer answer={false} correctAnswer={countries[shownFlag].country}
+            <Answer answer={false} correctAnswer={countries[shownFlagIndex].country}
             wrongAnswer={guessingStatus.wrongAnswer}
             />}
 
