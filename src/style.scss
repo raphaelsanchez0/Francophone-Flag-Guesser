@@ -17,31 +17,33 @@ body {
 .header {
     background: #232A34;
     margin: 0;
+
+    .title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 7.5vh;
+
+        span {
+            font-weight: 900;
+            margin: 0 .1em 0 .1em;
+        }
+
+        .span-francophone {
+            color: #4584FF;
+        }
+
+        .span-flag {
+            color: white;
+        }
+
+        .span-guesser {
+            color: #FF5C5C
+        }
+    }
 }
 
-.header--title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 7.5vh;
-}
 
-.header--title>span {
-    font-weight: 900;
-    margin: 0 .1em 0 .1em;
-}
-
-.header--francophone {
-    color: #4584FF;
-}
-
-.header--flag {
-    color: white;
-}
-
-.header--guesser {
-    color: #FF5C5C
-}
 
 .guesser {
     background-color: #212329;
@@ -53,41 +55,38 @@ body {
     align-items: center;
     border-radius: 15px;
     padding: 4em;
-}
 
-.guesser--image {
-    width: auto;
-    height: 70%;
-    max-width: 100%;
-    display: block;
+    .flag-image {
+        width: auto;
+        height: 70%;
+        max-width: 100%;
+        display: block;
+    }
 
+    .answer-buttons {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        height: auto;
+        width: auto;
+        flex-grow: 1;
+        gap: 20px;
+        align-self: stretch;
+        margin: 20px;
+    }
 
-}
+    .answer-button {
+        border: none;
+        text-decoration: none;
+        background-color: #30333D;
+        color: white;
+        font-weight: bolder;
+        text-align: center;
 
-.guesser--buttons {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    height: auto;
-    width: auto;
-    flex-grow: 1;
-    gap: 20px;
-    align-self: stretch;
-    margin: 20px;
-}
-
-.guesser--button {
-    border: none;
-    text-decoration: none;
-    background-color: #30333D;
-    color: white;
-    font-weight: bolder;
-    text-align: center;
-
-}
-
-.guesser--button:hover {
-    background-color: #3b3d42;
+        &:hover {
+            background-color: #3b3d42;
+        }
+    }
 }
 
 .answer {

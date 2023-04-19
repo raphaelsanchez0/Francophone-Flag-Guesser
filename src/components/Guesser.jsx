@@ -4,12 +4,12 @@ import francophoneCountries from '../assets/francophoneFlags.js';
 import Answer from './Answer.jsx';
 
 export default function Guesser() {
-    const [shownFlagIndex, setShownFlagIndex] = useState(getRandomFlagIndex()) 
+    const [shownFlagIndex, setShownFlagIndex] = useState(getRandomFlagIndex())
     //index is refering to the index of the flag in the francophoneFlags.js
 
     const [guessingStatus, setGuessingStatus] = useState({
-        status:"guessing",
-        wrongAnswer:""
+        status: "guessing",
+        wrongAnswer: ""
     })
 
     function getRandomFlagIndex() {
@@ -44,7 +44,7 @@ export default function Guesser() {
         return array;
     }
 
-    function createAnswer(){
+    function createAnswer() {
 
     }
 
@@ -55,7 +55,7 @@ export default function Guesser() {
                 status: 'correctAnswer'
             }))
         } else {
-            const wrongFlag = countries.find(country => country.id ===selectedFlagIndex)
+            const wrongFlag = countries.find(country => country.id === selectedFlagIndex)
             setGuessingStatus(prevStatus => ({
                 ...prevStatus,
                 status: 'wrongAnswer',
@@ -69,21 +69,25 @@ export default function Guesser() {
     const flagButtons = createFlagOptions(shownFlagIndex, 4).map(button => {
         const countryObject = francophoneCountries[button]
         return (
-            <button className='guesser--button' onClick={() => handleAnswer(francophoneCountries[button].id)}> {countryObject.country} </button>
+            <button className='answer-button' onClick={() => handleAnswer(francophoneCountries[button].id)}> {countryObject.country} </button>
         )
     })
 
     return (
         <div className="guesser">
-            <img src={`https://flagcdn.com/${countries[shownFlagIndex].id}.svg`} className="guesser--image" />
-            {guessingStatus.status==="guessing" && 
-            <div className='guesser--buttons'>{flagButtons}</div>}
-            {guessingStatus.status ==="correctAnswer" && 
-            <Answer answer={true} correctAnswer={countries[shownFlagIndex].country}/>}
-            {guessingStatus.status ==="wrongAnswer" && 
-            <Answer answer={false} correctAnswer={countries[shownFlagIndex].country}
-            wrongAnswer={guessingStatus.wrongAnswer}
-            />}
+            <img src={`https://flagcdn.com/${countries[shownFlagIndex].id}.svg`} className="flag-image" />
+
+            {guessingStatus.status === "guessing" &&
+                <div className='answer-buttons'>
+                    {flagButtons}
+                </div>}
+
+            {guessingStatus.status === "correctAnswer" &&
+                <Answer answer={true} correctAnswer={countries[shownFlagIndex].country} />}
+
+            {guessingStatus.status === "wrongAnswer" &&
+                <Answer answer={false} correctAnswer={countries[shownFlagIndex].country}
+                    wrongAnswer={guessingStatus.wrongAnswer} />}
 
         </div>
     )

@@ -19,27 +19,27 @@ body {
   margin: 0;
 }
 
-.header--title {
+.header .title {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 7.5vh;
 }
 
-.header--title>span {
+.header .title>span {
   font-weight: 900;
   margin: 0 .1em 0 .1em;
 }
 
-.header--francophone {
+.header .title .span-francophone {
   color: #4584FF;
 }
 
-.header--flag {
+.header .title .span-flag {
   color: white;
 }
 
-.header--guesser {
+.header .title .span-guesser {
   color: #FF5C5C
 }
 
