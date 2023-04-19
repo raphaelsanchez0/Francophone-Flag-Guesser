@@ -57,9 +57,10 @@ body {
 
 .guesser--image {
   width: auto;
-  height: auto;
+  height: 70%;
   max-width: 100%;
   display: block;
+
 
 }
 
@@ -89,7 +90,7 @@ body {
   background-color: #3b3d42;
 }
 
-.answer{
+.answer {
   color: white;
   text-align: center;
   display: flex;
