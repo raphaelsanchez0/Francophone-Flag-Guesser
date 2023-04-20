@@ -44,8 +44,12 @@ export default function Guesser() {
         return array;
     }
 
-    function createAnswer() {
-
+    function reset() {
+        setGuessingStatus(prevStatus => ({
+            ...prevStatus,
+            status: 'guessing'
+        }))
+        changeFlag()
     }
 
     function handleAnswer(selectedFlagIndex) {
@@ -69,7 +73,8 @@ export default function Guesser() {
     const flagButtons = createFlagOptions(shownFlagIndex, 4).map(button => {
         const countryObject = francophoneCountries[button]
         return (
-            <button className='answer-button' onClick={() => handleAnswer(francophoneCountries[button].id)}> {countryObject.country} </button>
+            <button className='button' onClick={() => handleAnswer(francophoneCountries[button].id)}>
+                <h2>{countryObject.country}</h2> </button>
         )
     })
 
@@ -78,15 +83,15 @@ export default function Guesser() {
             <img src={`https://flagcdn.com/${countries[shownFlagIndex].id}.svg`} className="flag-image" />
 
             {guessingStatus.status === "guessing" &&
-                <div className='answer-buttons'>
+                <div className='buttons'>
                     {flagButtons}
                 </div>}
 
             {guessingStatus.status === "correctAnswer" &&
-                <Answer answer={true} correctAnswer={countries[shownFlagIndex].country} />}
+                <Answer answer={true} correctAnswer={countries[shownFlagIndex].country} reset={reset} />}
 
             {guessingStatus.status === "wrongAnswer" &&
-                <Answer answer={false} correctAnswer={countries[shownFlagIndex].country}
+                <Answer answer={false} reset={reset} correctAnswer={countries[shownFlagIndex].country}
                     wrongAnswer={guessingStatus.wrongAnswer} />}
 
         </div>
