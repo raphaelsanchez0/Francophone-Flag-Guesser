@@ -44,9 +44,17 @@ export default function Guesser() {
         return array;
     }
 
-    function createAnswer() {
-
+    function reset(){
+        changeFlag()
+        setGuessingStatus(prevStatus => ({
+            ...prevStatus,
+            status: 'guessing',
+            wrongAnswer: ""
+        }))
+    
     }
+
+    
 
     function handleAnswer(selectedFlagIndex) {
         if (selectedFlagIndex === countries[shownFlagIndex].id) {
@@ -67,7 +75,7 @@ export default function Guesser() {
     }
 
     const flagButtons = createFlagOptions(shownFlagIndex, 4).map(button => {
-        const countryObject = francophoneCountries[button]
+        const countryObject = countries[button]
         return (
             <button className='answer-button' onClick={() => handleAnswer(francophoneCountries[button].id)}> {countryObject.country} </button>
         )
@@ -83,11 +91,19 @@ export default function Guesser() {
                 </div>}
 
             {guessingStatus.status === "correctAnswer" &&
-                <Answer answer={true} correctAnswer={countries[shownFlagIndex].country} />}
+                <Answer 
+                    answer={true} 
+                    correctAnswer={countries[shownFlagIndex].country} 
+                    reset = {reset}
+                    />}
 
             {guessingStatus.status === "wrongAnswer" &&
-                <Answer answer={false} correctAnswer={countries[shownFlagIndex].country}
-                    wrongAnswer={guessingStatus.wrongAnswer} />}
+                <Answer 
+                    answer={false} 
+                    correctAnswer={countries[shownFlagIndex].country}
+                    wrongAnswer={guessingStatus.wrongAnswer} 
+                    reset = {reset}
+                    />}
 
         </div>
     )

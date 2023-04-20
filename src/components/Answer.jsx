@@ -12,7 +12,11 @@ export default function Answer(props) {
     return (
         <div className='answer'>
             {accurateResponse && <h1>{`${props.correctAnswer} is correct`}</h1>}
-            {!accurateResponse && <h1>{`The flag is not ${props.wrongAnswer}, it is ${props.correctAnswer} `}</h1>}
+            {!accurateResponse && <h3>{`The flag is not ${props.wrongAnswer}, it is ${props.correctAnswer} `}</h3>}
+            <button 
+                className='restart-button'
+                onClick={()=>props.reset()}
+                >Restart</button>
         </div>
     )
 }
