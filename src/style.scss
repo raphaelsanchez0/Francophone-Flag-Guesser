@@ -17,6 +17,13 @@ body {
     background: #30333D;
 }
 
+html,
+body {
+    margin: 0;
+    height: 100%;
+    overflow: hidden
+}
+
 button {
     border: none;
     text-decoration: none;
@@ -126,8 +133,6 @@ button {
 
 
     .header {
-
-
         .title {
             height: 10vh;
 
@@ -152,18 +157,35 @@ button {
         }
     }
 
+    .App {
+        display: block;
+
+    }
+
+
     .guesser {
         background: #30333D;
-        width: auto;
-        height: auto;
+        width: 100%;
+
         padding: 4em;
-        margin: 0;
+        margin: 5vh 0 5vh;
+
+        display: flex;
+        flex-direction: column;
+
 
         .flag-image {
-            width: 100%;
+            height: 100%;
 
             max-width: 100%;
             display: block;
+            align-self: self-start;
+            flex: 1;
+        }
+
+        .buttons {
+            align-self: center;
+            flex: 1;
         }
 
         .button {
@@ -174,19 +196,9 @@ button {
                 background-color: #3b3d42;
             }
         }
+
+
     }
-}
 
-flex-direction: column;
 
-.restart-button {
-    background-color: #30333D;
-    color: white;
-    font-weight: bolder;
-    padding: 20px;
-
-    &:hover {
-        background-color: #3b3d42;
-    }
-}
 }
