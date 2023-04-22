@@ -4,6 +4,15 @@
     box-sizing: border-box;
 }
 
+button {
+    border: none;
+    text-decoration: none;
+
+    &:hover {
+        background-color: #3b3d42;
+    }
+}
+
 body {
     background: #30333D;
 }
@@ -166,4 +175,18 @@ button {
             }
         }
     }
+}
+
+flex-direction: column;
+
+.restart-button {
+    background-color: #30333D;
+    color: white;
+    font-weight: bolder;
+    padding: 20px;
+
+    &:hover {
+        background-color: #3b3d42;
+    }
+}
 }
